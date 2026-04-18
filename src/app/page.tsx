@@ -47,6 +47,32 @@ export default function Home() {
             className="w-full flex justify-center items-center"
           >
             <main className="bg-cream w-full max-w-[440px] h-[95vh] py-6 px-5 shadow-2xl rounded-lg flex flex-col items-center text-center overflow-hidden border border-sage/10 relative">
+              {/* Corner Decorations */}
+              <motion.div 
+                variants={itemVariants} 
+                className="absolute -top-4 -left-6 w-32 h-32 opacity-30 pointer-events-none"
+              >
+                <Image
+                  src="/image/flower.svg"
+                  alt="Pattern"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
+              <motion.div 
+                variants={itemVariants} 
+                className="absolute -bottom-4 -right-6 w-32 h-32 opacity-30 pointer-events-none rotate-180"
+              >
+                <Image
+                  src="/image/flower.svg"
+                  alt="Pattern"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
+
               {/* Top Icon */}
               <motion.div variants={itemVariants} className="mb-4 shrink-0">
                 <div className="w-12 h-12 rounded-full bg-[#eff3ee] flex justify-center items-center">
