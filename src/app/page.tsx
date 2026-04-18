@@ -28,10 +28,16 @@ export default function Home() {
           return clearInterval(interval);
         }
 
-        const particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'] });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'] });
+        const particleCount = 40 * (timeLeft / duration);
+        // Burst from the middle
+        confetti({ 
+          ...defaults, 
+          particleCount, 
+          origin: { x: 0.5, y: 0.5 }, 
+          colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'],
+          scalar: 1,
+          gravity: 0.8
+        });
       }, 250);
     }, 2500);
     return () => clearTimeout(timer);
