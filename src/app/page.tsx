@@ -14,31 +14,17 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      // Trigger confetti when loading finishes
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 15, spread: 360, ticks: 100, zIndex: 0 };
-
-      const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
-
-      const interval: any = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
-        const particleCount = 40 * (timeLeft / duration);
-        // Burst from the middle
-        confetti({ 
-          ...defaults, 
-          particleCount, 
-          origin: { x: 0.5, y: 0.5 }, 
-          colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'],
-          scalar: 1,
-          gravity: 0.4
-        });
-      }, 250);
+      // Trigger a single confetti burst when loading finishes
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { x: 0.5, y: 0.5 },
+        colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'],
+        startVelocity: 15,
+        gravity: 0.4,
+        scalar: 1,
+        ticks: 200
+      });
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
