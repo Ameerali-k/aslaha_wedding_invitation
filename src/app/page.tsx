@@ -17,13 +17,13 @@ export default function Home() {
       // Trigger a single confetti burst when loading finishes
       confetti({
         particleCount: 150,
-        spread: 70,
+        spread: 360,
         origin: { x: 0.5, y: 0.5 },
         colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'],
-        startVelocity: 15,
-        gravity: 0.4,
+        startVelocity: 25,
+        gravity: 0.5,
         scalar: 1,
-        ticks: 200
+        ticks: 300
       });
     }, 2500);
     return () => clearTimeout(timer);
