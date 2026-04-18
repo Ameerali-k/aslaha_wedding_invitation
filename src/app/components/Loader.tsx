@@ -14,9 +14,9 @@ export default function Loader() {
           xmlns="http://www.w3.org/2000/svg"
           className="text-sage"
         >
-          {/* Elegant Floral/Lotus Line Art with Draw Animation */}
+          {/* Enhanced Organic Lotus Line Art */}
           <path
-            d="M50 85C50 85 45 65 30 55C15 45 10 30 30 25C40 22 45 30 50 40C55 30 60 22 70 25C90 30 85 45 70 55C55 65 50 85 50 85Z"
+            d="M50 90C50 90 48 70 32 60C16 50 12 35 28 28C40 23 48 30 50 42C52 30 60 23 72 28C88 35 84 50 68 60C52 70 50 90 50 90Z"
             stroke="currentColor"
             strokeWidth="1.2"
             strokeLinecap="round"
@@ -24,7 +24,7 @@ export default function Loader() {
             className="animate-draw"
           />
           <path
-            d="M50 40C50 40 45 20 30 15C15 10 5 25 20 35C30 42 45 42 50 40Z"
+            d="M50 45C50 45 42 22 28 18C14 14 5 30 18 42C28 50 45 48 50 45Z"
             stroke="currentColor"
             strokeWidth="1.2"
             strokeLinecap="round"
@@ -32,7 +32,7 @@ export default function Loader() {
             style={{ animationDelay: '0.4s' }}
           />
           <path
-            d="M50 40C50 40 55 20 70 15C85 10 95 25 80 35C70 42 55 42 50 40Z"
+            d="M50 45C50 45 58 22 72 18C86 14 95 30 82 42C72 50 55 48 50 45Z"
             stroke="currentColor"
             strokeWidth="1.2"
             strokeLinecap="round"
@@ -40,12 +40,20 @@ export default function Loader() {
             style={{ animationDelay: '0.8s' }}
           />
           <path
-            d="M50 85L50 65"
+            d="M35 65C35 65 20 60 18 45C16 30 30 25 40 35"
             stroke="currentColor"
             strokeWidth="1.2"
             strokeLinecap="round"
             className="animate-draw"
             style={{ animationDelay: '1.2s' }}
+          />
+          <path
+            d="M65 65C65 65 80 60 82 45C84 30 70 25 60 35"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            className="animate-draw"
+            style={{ animationDelay: '1.6s' }}
           />
         </svg>
       </div>

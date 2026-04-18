@@ -6,6 +6,7 @@ import Countdown from "./components/Countdown";
 import Link from "next/link";
 import Loader from "./components/Loader";
 import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +14,25 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
+      // Trigger confetti when loading finishes
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+      const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+      const interval: any = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        // since particles fall down, start a bit higher than random
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'] });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'] });
+      }, 250);
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
@@ -26,7 +46,7 @@ export default function Home() {
         delayChildren: 0.3,
       },
     },
-  } as const;
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -35,7 +55,7 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center h-screen p-3 md:p-5">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {loading ? (
           <Loader key="loader" />
         ) : (
@@ -48,9 +68,9 @@ export default function Home() {
           >
             <main className="bg-cream w-full max-w-[440px] h-[95vh] py-6 px-5 shadow-2xl rounded-lg flex flex-col items-center text-center overflow-hidden border border-sage/10 relative">
               {/* Corner Decorations */}
-              <motion.div 
-                variants={itemVariants} 
-                className="absolute -top-4 -left-6 w-32 h-32 opacity-30 pointer-events-none"
+              <motion.div
+                variants={itemVariants}
+                className="absolute -top-10 -left-6 w-32 h-32 opacity-30 pointer-events-none"
               >
                 <Image
                   src="/image/flower.svg"
@@ -60,16 +80,16 @@ export default function Home() {
                   className="w-full h-full object-contain"
                 />
               </motion.div>
-              <motion.div 
-                variants={itemVariants} 
-                className="absolute -bottom-4 -right-6 w-32 h-32 opacity-30 pointer-events-none rotate-180"
+              <motion.div
+                variants={itemVariants}
+                className="absolute -bottom-10 -right-6 w-32 h-32 opacity-30 pointer-events-none rotate-180"
               >
                 <Image
                   src="/image/flower.svg"
                   alt="Pattern"
                   width={128}
                   height={128}
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto object-contain"
                 />
               </motion.div>
 
@@ -103,7 +123,7 @@ export default function Home() {
                   </div>
                   {/* Effects overlay */}
                   <div className="absolute inset-0 pointer-events-none z-20">
-                    <div className="absolute inset-0 animate-flash-beam mix-blend-screen mix-blend-overlay"></div>
+                    <div className="absolute inset-0 animate-flash-beam mix-blend-overlay"></div>
                   </div>
                 </div>
 
@@ -173,8 +193,8 @@ export default function Home() {
                   <span>Parakkad, Koppam, Pattambi</span>
                 </div>
 
-                <Link 
-                  href="https://maps.app.goo.gl/cD6hDBzN7dip4HSb9" 
+                <Link
+                  href="https://maps.app.goo.gl/cD6hDBzN7dip4HSb9"
                   target="_blank"
                   className="inline-flex items-center gap-2 border border-sage bg-[#eff3ee] px-5 py-2 rounded-full text-sage font-bold text-[10px] tracking-wider transition-all hover:bg-sage hover:text-white group"
                 >
