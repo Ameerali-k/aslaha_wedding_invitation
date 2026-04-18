@@ -17,7 +17,7 @@ export default function Home() {
       // Trigger confetti when loading finishes
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const defaults = { startVelocity: 20, spread: 360, ticks: 60, zIndex: 0 };
 
       const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
@@ -28,17 +28,17 @@ export default function Home() {
           return clearInterval(interval);
         }
 
-        const particleCount = 40 * (timeLeft / duration);
+        const particleCount = 15 * (timeLeft / duration);
         // Burst from the middle
         confetti({ 
           ...defaults, 
           particleCount, 
           origin: { x: 0.5, y: 0.5 }, 
           colors: ['#6B8E6B', '#fcfbf7', '#d1d9cf'],
-          scalar: 1,
-          gravity: 0.8
+          scalar: 0.8,
+          gravity: 0.7
         });
-      }, 250);
+      }, 400); // Increased interval to reduce density
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
