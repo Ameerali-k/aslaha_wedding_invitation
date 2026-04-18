@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-cigra: var(--font-cigra);
+  --font-outfit: var(--font-outfit);
+  --font-cinzel: var(--font-cinzel);
+  --font-cinzel-local: var(--font-cinzel-local);
+  
+  --color-sage: #6B8E6B;
+  --color-cream: #fcfbf7;
+  --color-dark: #1a1a1a;
+  --color-muted: #555;
+  --color-border: #d1d9cf;
+}
+
+:root {
+  --bg-color: #fcfbf7;
+  --sage-green: #6B8E6B;
+  --text-dark: #1a1a1a;
+  --text-muted: #555;
+  --border-color: #d1d9cf;
+}
+
+body {
+  background-color: #f4f2ee;
+  background-image: radial-gradient(#d1d9cf 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  color: var(--text-dark);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  .animate-beam {
+    background: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0) 60%
+    );
+    background-size: 200% 100%;
+    animation: beam 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .animate-flash-beam {
+    background: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    background-size: 200% 100%;
+    animation: flash-beam 5s linear infinite;
+    pointer-events: none;
+  }
+
+  .animate-draw {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: draw 3s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes flash-beam {
+  0% { background-position: 200% 0; }
+  40% { background-position: -200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 500; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 500; }
+  100% { stroke-dashoffset: 0; }
+}
