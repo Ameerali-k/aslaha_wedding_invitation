@@ -10,6 +10,7 @@ import confetti from "canvas-confetti";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [hijriDate, setHijriDate] = useState("1 Dhul Hijjah 1447"); // Default fallback
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,6 +27,26 @@ export default function Home() {
         ticks: 300
       });
     }, 2500);
+
+    const fetchHijriDate = async () => {
+      try {
+        const response = await fetch("https://api.aladhan.com/v1/gToH/17-05-2026");
+        const data = await response.json();
+        if (data.code === 200) {
+          const hijri = data.data.hijri;
+          // Normalize month name (remove macrons/special characters)
+          const normalizedMonth = hijri.month.en
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/ʿ/g, "'");
+          setHijriDate(`${hijri.day} ${normalizedMonth} ${hijri.year}`);
+        }
+      } catch (error) {
+        console.error("Failed to fetch Hijri date:", error);
+      }
+    };
+    fetchHijriDate();
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -162,7 +183,7 @@ export default function Home() {
               {/* Hijri Date */}
               <motion.div variants={itemVariants} className="flex items-center gap-2 mb-3 shrink-0">
                 <div className="h-[1px] bg-border w-5" />
-                <p className="text-[11px] text-sage font-bold">1 Dhul Hijjah 1447</p>
+                <p className="text-[11px] text-sage font-bold">{hijriDate}</p>
                 <div className="h-[1px] bg-border w-5" />
               </motion.div>
 
